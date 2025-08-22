@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "useDefineForClassFields": true,
+    // "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
@@ -25,13 +25,17 @@
         "name": "next"
       }
     ],
-    "typeRoots": ["./node_modules/@types", "./src/types"]
-  },
-  "include": ["src", ".next/types/**/*.ts"],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
+    "paths": {
+      "@/*": ["./src/*"]
     }
+    // "typeRoots": ["./node_modules/@types", "./src/types"]
+  },
+  "include": [
+    "src",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
