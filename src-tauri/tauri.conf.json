@@ -5,9 +5,9 @@
   "identifier": "com.beardycoding.call-and-roll",
   "build": {
     "beforeDevCommand": "yarn dev",
-    "devUrl": "http://localhost:1420",
+    "devUrl": "http://localhost:3000",
     "beforeBuildCommand": "yarn build",
-    "frontendDist": "../dist"
+    "frontendDist": "../out"
   },
   "app": {
     "windows": [
