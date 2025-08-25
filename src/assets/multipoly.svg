@@ -1,0 +1,19 @@
+<svg width="200" height="100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle (optional) -->
+  <circle cx="100" cy="50" r="40" fill="#f0f9ff" stroke="#4facfe" stroke-width="2"/>
+  
+  <!-- Connection Line -->
+  <line x1="50" y1="50" x2="150" y2="50" stroke="#4facfe" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- House 1 -->
+  <path d="M40,50 L40,30 L50,20 L60,30 L60,50 Z" fill="#ff7e5f" stroke="#333" stroke-width="1"/>
+  <rect x="45" y="40" width="10" height="10" fill="white" stroke="#333" stroke-width="1"/>
+  
+  <!-- House 2 -->
+  <path d="M90,50 L90,20 L100,10 L110,20 L110,50 Z" fill="#4facfe" stroke="#333" stroke-width="1"/>
+  <rect x="95" y="30" width="10" height="20" fill="white" stroke="#333" stroke-width="1"/>
+  
+  <!-- House 3 -->
+  <path d="M140,50 L140,25 L150,15 L160,25 L160,50 Z" fill="#2af598" stroke="#333" stroke-width="1"/>
+  <rect x="145" y="35" width="10" height="15" fill="white" stroke="#333" stroke-width="1"/>
+</svg>

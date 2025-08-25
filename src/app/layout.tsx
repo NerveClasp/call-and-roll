@@ -1,3 +1,5 @@
+import "./page.css";
+
 export default function RootLayout({
   children,
 }: {
@@ -12,7 +14,9 @@ export default function RootLayout({
         <title>Tauri + React + Typescript</title>
       </head>
 
-      <body>{children}</body>
+      <body>
+        <main className="container">{children}</main>
+      </body>
     </html>
   );
 }
