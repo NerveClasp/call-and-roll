@@ -1,4 +1,6 @@
+import { ThemeProvider } from "@/components/theme-provider";
 import "./page.css";
+import "../styles/globals.css";
 
 export default function RootLayout({
   children,
@@ -6,7 +8,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -14,8 +16,15 @@ export default function RootLayout({
         <title>Tauri + React + Typescript</title>
       </head>
 
-      <body>
-        <main className="container">{children}</main>
+      <body className="min-h-screen bg-background font-sans antialiased">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <main className="container">{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );

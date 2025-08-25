@@ -2,22 +2,26 @@
 
 import Disclamer from "@/components/Disclamer";
 import "./page.css";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 function Page() {
   return (
     <>
-      <h1>Welcome to Call And Roll</h1>
+      <h1 className="text-4xl mb-4">Welcome to Call And Roll</h1>
       <Disclamer />
 
       <div className="row">
-        <a href="/multipoly">
+        <Link href="/multipoly">
           <img
             src="/multipoly.svg"
             className="logo multipoly"
             alt="Multipoly logo"
           />
-          <span>Multypoly</span>
-        </a>
+          <Button variant="outline" className="mb-4">
+            Multypoly
+          </Button>
+        </Link>
       </div>
     </>
   );
