@@ -1,8 +1,4 @@
-"use client";
-
 import Disclamer from "@/components/Disclamer";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,8 +6,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Play } from "lucide-react";
 import Image from "next/image";
+import PlayButton from "@/components/PlayButton";
 
 const games: Array<{
   id: string;
@@ -61,12 +57,7 @@ function Page() {
               <CardDescription>{game.description}</CardDescription>
             </CardHeader>
             <CardContent className="text-center">
-              <Link href={game.href} passHref>
-                <Button className="w-full">
-                  <Play className="w-4 h-4 mr-2" />
-                  Play Now
-                </Button>
-              </Link>
+              <PlayButton href={game.href} />
             </CardContent>
           </Card>
         ))}
