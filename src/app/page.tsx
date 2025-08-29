@@ -1,4 +1,3 @@
-import Disclaimer from "@/components/Disclaimer";
 import {
   Card,
   CardContent,
@@ -8,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import PlayButton from "@/components/PlayButton";
+import Header from "@/components/Header";
 
 const games: Array<{
   id: string;
@@ -27,42 +27,45 @@ const games: Array<{
 
 function Page() {
   return (
-    <div className="space-y-8">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight">
-          Welcome to Call and Roll!
-        </h1>
-        <p className="text-lg max-w-2xl mx-auto">
-          Play tabletop games with your loved ones, no matter the distance!
-        </p>
+    <>
+      <Header />
+      <main className="flex-1 container mx-auto px-4 py-8">
+        <div className="space-y-8">
+          <div className="text-center space-y-4">
+            <h1 className="text-4xl font-bold tracking-tight">
+              Welcome to Call and Roll!
+            </h1>
+            <p className="text-lg max-w-2xl mx-auto">
+              Play tabletop games with your loved ones, no matter the distance!
+            </p>
+          </div>
 
-        <Disclaimer />
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {games.map((game) => (
-          <Card
-            key={game.id}
-            className="hover:shadow-lg transition-shadow duration-300"
-          >
-            <CardHeader className="text-center">
-              <Image
-                src={game.img}
-                alt={game.name}
-                width={64}
-                height={64}
-                className="mx-auto mb-2"
-              />
-              <CardTitle className="text-xl">{game.name}</CardTitle>
-              <CardDescription>{game.description}</CardDescription>
-            </CardHeader>
-            <CardContent className="text-center">
-              <PlayButton href={game.href} />
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {games.map((game) => (
+              <Card
+                key={game.id}
+                className="hover:shadow-lg transition-shadow duration-300"
+              >
+                <CardHeader className="text-center">
+                  <Image
+                    src={game.img}
+                    alt={game.name}
+                    width={64}
+                    height={64}
+                    className="mx-auto mb-2"
+                  />
+                  <CardTitle className="text-xl">{game.name}</CardTitle>
+                  <CardDescription>{game.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <PlayButton href={game.href} />
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </main>
+    </>
   );
 }
 

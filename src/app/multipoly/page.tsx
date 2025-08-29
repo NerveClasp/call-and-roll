@@ -1,16 +1,18 @@
-import BackButton from "@/components/BackButton";
-import Disclaimer from "@/components/Disclaimer";
+import Header from "@/components/Header";
+import { Card } from "@/components/ui/card";
 
 function Page() {
   return (
     <>
-      <BackButton />
-      <div className="space-y-8">
-        <div className="text-center space-y-4 flex items-center flex-col">
-          <h1 className="text-4xl font-bold tracking-tight">Multypoly</h1>
-          <Disclaimer />
+      <Header links={[{ name: "Multypoly", href: "/multipoly" }]} />
+      <main className="flex-1 container mx-auto px-4 py-8">
+        <div className="space-y-8">
+          <div className="text-center space-y-4 flex items-center flex-col">
+            {/* @TODO: do some clever calculations here later, for now this will do */}
+            <Card className="w-[100vh] h-[100vh]">Game</Card>
+          </div>
         </div>
-      </div>
+      </main>
     </>
   );
 }
