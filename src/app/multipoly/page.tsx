@@ -4,6 +4,40 @@ import raspberry from "./raspberry.svg";
 import { StaticImageData } from "next/image";
 import "./page.scss";
 import Link from "next/link";
+import Dice from "@/components/Dice";
+
+type PlayerId = "player1" | "player2" | "player3" | "player4";
+
+type Player = {
+  id: PlayerId;
+  name: string;
+  color: string;
+  icon: string;
+  position: number; // index of the cell on the board
+  money: number;
+  properties: { [propertyId: string]: boolean }; // dictionary of owned property ids
+};
+
+const players: Player[] = [
+  {
+    id: "player1",
+    name: "Max",
+    icon: "🫅",
+    color: "gold",
+    position: 0,
+    money: 20,
+    properties: {},
+  },
+  {
+    id: "player2",
+    name: "Romka",
+    icon: "🧔",
+    color: "lightblue",
+    position: 0,
+    money: 20,
+    properties: {},
+  },
+];
 
 type Cell = {
   id: string;
@@ -21,6 +55,7 @@ type SpecialCell = Cell & {
 
 type PropertyCell = (Cell & {
   type: "property";
+  owner?: PlayerId;
 }) &
   (
     | { color: "brown"; price: 1 }
@@ -125,7 +160,6 @@ const cells: Array<BoardCell> = [
   {
     id: "corn",
     type: "property",
-
     className: "left5",
     label: "Corn",
     icon: "🌽",
@@ -234,6 +268,8 @@ const cells: Array<BoardCell> = [
   },
 ];
 
+type DiceValue = 1 | 2 | 3 | 4 | 5 | 6;
+
 function Page() {
   return (
     <>
@@ -288,8 +324,19 @@ function Page() {
                   Read the rules
                 </Link>
               </Card>
-              <Card className="h-64">Player 1</Card>
-              <Card className="h-64">Player 2</Card>
+              <Card className="p-4 text-center">
+                <Dice />
+              </Card>
+              {players.map((player) => (
+                <Card key={player.id} className="items-center">
+                  <CardTitle className="text-lg mb-2 flex items-center gap-2">
+                    <span>{player.icon}</span> {player.name}
+                  </CardTitle>
+                  <CardContent className="flex flex-col gap-2">
+                    <div>Money: ${player.money}</div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
