@@ -21,6 +21,7 @@ export type SpecialCell = Cell & {
   type: "special";
   price?: never;
   color?: never;
+  owner?: string;
 };
 
 export type PropertyCell = (Cell & {
