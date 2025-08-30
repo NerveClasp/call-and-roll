@@ -5,26 +5,47 @@ import { StaticImageData } from "next/image";
 import "./page.scss";
 import Link from "next/link";
 
-const cells: Array<{
+type Cell = {
   id: string;
   label: string;
   className: string;
   icon?: string;
   svgIcon?: StaticImageData;
-  color?:
-    | "brown"
-    | "lightblue"
-    | "purple"
-    | "orange"
-    | "red"
-    | "lightgreen"
-    | "darkgreen"
-    | "darkblue";
-  price?: 1 | 2 | 3 | 4 | 5;
-}> = [
-  { id: "start", className: "start", label: "Start", icon: "⬅️" },
+};
+
+type SpecialCell = Cell & {
+  type: "special";
+  price?: never;
+  color?: never;
+};
+
+type PropertyCell = (Cell & {
+  type: "property";
+}) &
+  (
+    | { color: "brown"; price: 1 }
+    | { color: "lightblue"; price: 1 }
+    | { color: "purple"; price: 2 }
+    | { color: "orange"; price: 2 }
+    | { color: "red"; price: 3 }
+    | { color: "lightgreen"; price: 3 }
+    | { color: "darkgreen"; price: 4 }
+    | { color: "darkblue"; price: 5 }
+  );
+
+type BoardCell = SpecialCell | PropertyCell;
+
+const cells: Array<BoardCell> = [
+  {
+    id: "start",
+    type: "special",
+    className: "start",
+    label: "Start",
+    icon: "⬅️",
+  },
   {
     id: "dog",
+    type: "property",
     className: "bottom1",
     label: "Dog",
     icon: "🐶",
@@ -33,6 +54,8 @@ const cells: Array<{
   },
   {
     id: "cat",
+    type: "property",
+
     className: "bottom2",
     label: "Cat",
     icon: "🐱",
@@ -41,12 +64,14 @@ const cells: Array<{
   },
   {
     id: "chance1",
+    type: "special",
     className: "bottom3",
     label: "Village vacation",
     icon: "❓️",
   },
   {
     id: "strawberry",
+    type: "property",
     className: "bottom4",
     label: "Strawberry",
     icon: "🍓",
@@ -55,15 +80,17 @@ const cells: Array<{
   },
   {
     id: "raspberry",
+    type: "property",
     className: "bottom5",
     label: "Raspberry",
     svgIcon: raspberry,
     color: "lightblue",
     price: 1,
   },
-  { id: "jail", label: "Jail", className: "jail", icon: "⛓️" },
+  { id: "jail", type: "special", label: "Jail", className: "jail", icon: "⛓️" },
   {
     id: "chicken",
+    type: "property",
     className: "left1",
     label: "Chicken",
     icon: "🐔",
@@ -72,6 +99,7 @@ const cells: Array<{
   },
   {
     id: "bee",
+    type: "property",
     className: "left2",
     label: "Bee",
     icon: "🐝",
@@ -80,12 +108,14 @@ const cells: Array<{
   },
   {
     id: "chance2",
+    type: "special",
     className: "left3",
     label: "Village vacation",
     icon: "❓️",
   },
   {
     id: "watermill",
+    type: "property",
     className: "left4",
     label: "Watermill",
     icon: "🛞",
@@ -94,6 +124,7 @@ const cells: Array<{
   },
   {
     id: "corn",
+    type: "property",
 
     className: "left5",
     label: "Corn",
@@ -103,12 +134,14 @@ const cells: Array<{
   },
   {
     id: "parking",
+    type: "special",
     className: "parking",
     label: "Parking",
     icon: "🅿️",
   },
   {
     id: "apple",
+    type: "property",
     className: "top1",
     label: "Apple",
     icon: "🍎",
@@ -117,6 +150,7 @@ const cells: Array<{
   },
   {
     id: "carrot",
+    type: "property",
     className: "top2",
     label: "Carrot",
     icon: "🥕",
@@ -125,12 +159,14 @@ const cells: Array<{
   },
   {
     id: "chance3",
+    type: "special",
     className: "top3",
     label: "Village vacation",
     icon: "❓️",
   },
   {
     id: "horse",
+    type: "property",
     className: "top4",
     label: "Horse",
     icon: "🐴",
@@ -139,15 +175,23 @@ const cells: Array<{
   },
   {
     id: "pig",
+    type: "property",
     className: "top5",
     label: "Pig",
     icon: "🐷",
     color: "lightgreen",
     price: 3,
   },
-  { id: "police", label: "Police", className: "police", icon: "👮‍♂️" },
+  {
+    id: "police",
+    type: "special",
+    label: "Police",
+    className: "police",
+    icon: "👮‍♂️",
+  },
   {
     id: "tractor",
+    type: "property",
     className: "right1",
     label: "Tractor",
     icon: "🚜",
@@ -156,6 +200,7 @@ const cells: Array<{
   },
   {
     id: "cow",
+    type: "property",
     className: "right2",
     label: "Cow",
     icon: "🐮",
@@ -164,12 +209,14 @@ const cells: Array<{
   },
   {
     id: "chance4",
+    type: "special",
     className: "right3",
     label: "Village vacation",
     icon: "❓️",
   },
   {
     id: "market",
+    type: "property",
     className: "right4",
     label: "Market",
     icon: "🏪",
@@ -178,6 +225,7 @@ const cells: Array<{
   },
   {
     id: "farm",
+    type: "property",
     className: "right5",
     label: "Farm",
     icon: "👨‍🌾",
