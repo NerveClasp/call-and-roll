@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import raspberry from "./raspberry.svg";
-import watermill from "./watermill.svg";
 import { StaticImageData } from "next/image";
 import "./page.scss";
 import Link from "next/link";
