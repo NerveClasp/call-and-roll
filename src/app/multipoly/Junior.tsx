@@ -171,7 +171,7 @@ export default function Junior() {
         {gamePlayers.map((player, playerIndex) => (
           <Card
             key={player.id}
-            className={`items-center ${turn === playerIndex ? "border-green-500" : ""}`}
+            className={`items-center gap-1 ${turn === playerIndex ? "border-green-500" : ""}`}
           >
             <CardTitle className="text-lg mb-2 flex items-center gap-2">
               <span>{player.icon}</span> {player.name}
