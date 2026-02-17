@@ -106,6 +106,7 @@ export const cells: Array<BoardCell> = [
     label: "Watermill",
     icon: "🛞",
     color: "orange",
+    textColor: "black",
     price: 2,
   },
   {
@@ -115,6 +116,7 @@ export const cells: Array<BoardCell> = [
     label: "Corn",
     icon: "🌽",
     color: "orange",
+    textColor: "black",
     price: 2,
   },
   {

@@ -1,6 +1,12 @@
 "use client";
 
-import { Card, CardContent, CardFooter, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardTitle,
+  BoardCard,
+} from "@/components/ui/card";
 import Link from "next/link";
 import Dice from "@/components/Dice";
 import { cells, players } from "@/lib/constants";
@@ -103,43 +109,50 @@ export default function Junior() {
       <div className="wrapper">
         <div className="board grid grid-cols-7 grid-rows-7 h-full gap-1">
           {board.map((cell, cellIndex) => (
-            <Card
+            <BoardCard
               key={cell.id}
-              className={`flex flex-col items-center justify-center border p-2 ${cell.className} ${
-                selectedCell === cellIndex ? "border-blue-500" : ""
-              }`}
+              className={`board-card border ${cell.className} ${
+                playersPositionsDict[cellIndex] ? "bg-gray-800" : ""
+              } ${selectedCell === cellIndex ? "border-blue-500" : ""}`}
               style={{ cursor: "pointer" }}
               onClick={() => onCellClick(cellIndex)}
             >
-              <CardTitle className="text-sm mb-1">{cell.label}</CardTitle>
-              <CardContent className="flex flex-col items-center">
-                {cell.icon && (
-                  <span className="text-2xl mb-1">
-                    {cell.icon}{" "}
-                    {cell?.owner &&
-                      gamePlayers.find((p) => p.id === cell?.owner)?.icon}
-                  </span>
-                )}
+              <div className="board-card-header block">
                 {cell.price && (
                   <span
-                    className={`text-xs font-bold w-full`}
+                    className={`block text-l font-bold w-full rounded-xl mt-1 px-1`}
                     style={{
                       backgroundColor: cell.color || "black",
-                      color: cell.color?.includes("light") ? "black" : "white",
+                      color:
+                        cell?.textColor ??
+                        (cell.color?.includes("light") ? "black" : "white"),
                     }}
                   >
                     ${cell.price}{" "}
                   </span>
                 )}
-              </CardContent>
-              <CardFooter className="flex space-x-1">
+              </div>
+              <div className="flex items-center justify-center">
+                {cell.icon && (
+                  <span className="flex text-2xl">
+                    {cell.icon}{" "}
+                    {cell?.owner &&
+                      gamePlayers.find((p) => p.id === cell?.owner)?.icon}
+                  </span>
+                )}
+              </div>
+              <div className="flex space-x-1 justify-center">
                 {playersPositionsDict[cellIndex]?.map((player) => (
-                  <span key={player.id} title={player.name}>
+                  <span
+                    className="text-2xl"
+                    key={player.id}
+                    title={player.name}
+                  >
                     {player.icon}
                   </span>
                 ))}
-              </CardFooter>
-            </Card>
+              </div>
+            </BoardCard>
           ))}
         </div>
       </div>

@@ -15,6 +15,7 @@ export type Cell = {
   label: string;
   className: string;
   icon: string;
+  textColor?: string;
 };
 
 export type SpecialCell = Cell & {
