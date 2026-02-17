@@ -16,6 +16,8 @@ import { Input } from "@/components/ui/input";
 import { Player } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 
+const ACTIVE_BORDER = "border-yellow-500";
+
 export default function Junior() {
   const [turn, setTurn] = useState(0); // index of the current player's turn
   const [board, setBoard] = useState(cells);
@@ -112,8 +114,8 @@ export default function Junior() {
             <BoardCard
               key={cell.id}
               className={`board-card border ${cell.className} ${
-                playersPositionsDict[cellIndex] ? "bg-gray-800" : ""
-              } ${selectedCell === cellIndex ? "border-blue-500" : ""}`}
+                playersPositionsDict[cellIndex] ? "bg-yellow-900" : ""
+              } ${selectedCell === cellIndex ? ACTIVE_BORDER : ""}`}
               style={{ cursor: "pointer" }}
               onClick={() => onCellClick(cellIndex)}
             >
@@ -141,10 +143,10 @@ export default function Junior() {
                   </span>
                 )}
               </div>
-              <div className="flex space-x-1 justify-center">
+              <div className="flex space-x-1 justify-center items-center">
                 {playersPositionsDict[cellIndex]?.map((player) => (
                   <span
-                    className="text-2xl"
+                    className={`text-2xl ${players[turn].id === player.id ? "animate-pulse bg-yellow-400 rounded-2xl p-1" : ""}`}
                     key={player.id}
                     title={player.name}
                   >
@@ -171,7 +173,7 @@ export default function Junior() {
         {gamePlayers.map((player, playerIndex) => (
           <Card
             key={player.id}
-            className={`items-center gap-1 ${turn === playerIndex ? "border-green-500" : ""}`}
+            className={`items-center gap-1 ${turn === playerIndex ? ACTIVE_BORDER : ""}`}
           >
             <CardTitle className="text-lg mb-2 flex items-center gap-2">
               <span>{player.icon}</span> {player.name}
